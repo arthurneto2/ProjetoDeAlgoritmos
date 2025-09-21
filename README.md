@@ -27,9 +27,9 @@ Este projeto utiliza o CMake para gerenciar a compilação. Siga os passos abaix
 
 ### Linux
 
-1.  **Compile o projeto:**
+1.  **Crie o caminho build e compile o projeto:**
     ```bash
-    cd build
+    mkdir && cd build
     cmake ..
     make
     ```
@@ -47,9 +47,10 @@ Este projeto utiliza o CMake para gerenciar a compilação. Siga os passos abaix
 
 ### Windows
 
-1.  **Configure o projeto:**
+1.  **Crie o diretorio build e configure o projeto:**
     Recomenda-se o uso do `git-bash` ou um terminal similar.
     ```bash
+    mkdir build
     cd build
     cmake ..
     ```
