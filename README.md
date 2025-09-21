@@ -23,38 +23,49 @@ Após a execução, o programa gera dois tipos de arquivos de saída:
 
 ## Como Executar
 
-Este projeto foi desenvolvido e testado em um ambiente Linux. Para compilar e executar o programa, siga os passos abaixo:
+Este projeto utiliza o CMake para gerenciar a compilação. Siga os passos abaixo para compilar e executar o programa.
 
-1.  **Compilar o projeto:**
+### Linux
 
+1.  **Compile o projeto:**
     ```bash
-    make all
+    cd build
+    cmake ..
+    make
     ```
 
-    Este comando compilará o código-fonte e criará o executável em `bin/main`.
-
-2.  **Executar o programa:**
-
-    ```bash
-    make run
-    ```
-
-    ou
-
+2.  **Execute o programa:**
+    O executável será gerado em `build/bin/`.
     ```bash
     ./bin/main
     ```
-
-    Ao executar, um menu interativo será apresentado para que o usuário possa escolher qual conjunto de dados ordenar.
-
-3.  **Limpar os arquivos gerados:**
-
+    ou
     ```bash
-    make clean
+    make run
+    ```
+    Ao executar, um menu interativo será apresentado.
+
+### Windows
+
+1.  **Configure o projeto:**
+    Recomenda-se o uso do `git-bash` ou um terminal similar.
+    ```bash
+    cd build
+    cmake ..
     ```
 
-    Este comando removerá os arquivos de objeto, a biblioteca e o executável gerados pela compilação.
+2.  **Compile o projeto:**
+    ```bash
+    cmake --build .
+    ```
 
-### Nota para outros Sistemas Operacionais
+3.  **Execute o programa:**
+    O executável será gerado em `build/bin/`.
+    ```bash
+    ./bin/main.exe
+    ```
+    Ao executar, um menu interativo será apresentado.
 
-O `Makefile` e o código-fonte foram escritos para um ambiente Linux. Se você deseja executar este projeto em outro sistema operacional (como Windows ou macOS), pode ser necessário fazer adaptações no `Makefile` e, possivelmente, no código-fonte, especialmente no que diz respeito à manipulação de caminhos de arquivos e à compilação.
+### Limpando os arquivos gerados
+
+Para remover os arquivos gerados pela compilação, simplesmente apague o diretório `build`.
