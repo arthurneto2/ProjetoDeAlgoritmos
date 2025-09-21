@@ -1,5 +1,0 @@
-/home/arthur-n/Documents/ProjetoDeAlgoritmos/build/CMakeFiles/sorter.dir
-/home/arthur-n/Documents/ProjetoDeAlgoritmos/build/CMakeFiles/main.dir
-/home/arthur-n/Documents/ProjetoDeAlgoritmos/build/CMakeFiles/run.dir
-/home/arthur-n/Documents/ProjetoDeAlgoritmos/build/CMakeFiles/edit_cache.dir
-/home/arthur-n/Documents/ProjetoDeAlgoritmos/build/CMakeFiles/rebuild_cache.dir

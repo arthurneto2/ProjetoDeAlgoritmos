@@ -1,2 +1,0 @@
-/usr/bin/ar qc lib/libsorter.a CMakeFiles/sorter.dir/src/file_handler.c.o CMakeFiles/sorter.dir/src/insertion_sort.c.o CMakeFiles/sorter.dir/src/sequence_generator.c.o
-/usr/bin/ranlib lib/libsorter.a
