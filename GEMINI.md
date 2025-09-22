@@ -4,7 +4,7 @@
 
 Este projeto consiste na implementação e análise do algoritmo de ordenação **Insertion Sort**. O objetivo é desenvolver um programa em C ou C++ que ordene diferentes conjuntos de dados (crescente, decrescente e aleatório) e meça o tempo de execução para cada cenário.
 
-Conforme o documento `Primeiro_Trabalho_InsertionSort.pdf`, o projeto deve:
+Conforme o documento `ANÁLISE_ALGORITIMOS_DE_ORDENAÇÃO.pdf`, o projeto deve:
 
 1.  Implementar o algoritmo Insertion Sort.
 2.  Gerar e ler arquivos de entrada com instâncias de diferentes tamanhos (10, 100, 1.000, 10.000, 100.000, 1.000.000) e ordens (crescente, decrescente, aleatório).
@@ -37,7 +37,7 @@ O projeto está organizado da seguinte forma:
 ├── obj/
 ├── src/
 ├── GEMINI.md
-└── Primeiro_Trabalho_InsertionSort.pdf
+└── ANÁLISE_ALGORITIMOS_DE_ORDENAÇÃO.pdf
 ```
 
 ### Descrição dos Diretórios
@@ -52,4 +52,4 @@ O projeto está organizado da seguinte forma:
 *   `obj/`: Armazena os arquivos de objeto (`.o`) compilados a partir do código-fonte.
 *   `src/`: Conterá os arquivos de código-fonte (`.c` ou `.cpp`) com a implementação das funções declaradas nos cabeçalhos, incluindo os algoritmos de ordenação e as funções de manipulação de arquivos.
 *   `GEMINI.md`: Este arquivo, com a documentação geral do projeto.
-*   `Primeiro_Trabalho_InsertionSort.pdf`: O documento com a especificação do trabalho.
+*   `ANÁLISE_ALGORITIMOS_DE_ORDENAÇÃO.pdf`: O documento com a especificação do trabalho.
