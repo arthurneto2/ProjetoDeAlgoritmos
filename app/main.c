@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "../include/file_handler.h"
-#include "../include/insertion_sort.h"
+#include "../include/algorithms.h"
 #include "../include/sequence_generator.h"
 
 int main() {
@@ -13,6 +13,9 @@ int main() {
     do {
         printf("\n--- Menu de Algoritmos de Ordenacao ---\n");
         printf("1. Insertion Sort\n");
+        printf("2. Bubble Sort\n");
+        printf("3. Selection Sort\n");
+        printf("4. Shell Sort\n");
         printf("0. Sair\n");
         printf("Escolha um algoritmo: ");
         scanf("%d", &algorithm_choice);
@@ -22,7 +25,7 @@ int main() {
             return 0;
         }
 
-        if (algorithm_choice != 1) {
+        if (algorithm_choice < 1 || algorithm_choice > 4) {
             printf("Escolha invalida. Tente novamente.\n");
             continue;
         }
@@ -79,10 +82,39 @@ int main() {
         printf("Salvando arquivo de entrada...\n");
         write_input_file(seq_type, size, arr);
 
-        printf("Ordenando com Insertion Sort...\n");
-        clock_t start = clock();
-        insertion_sort(arr, size);
-        clock_t end = clock();
+        clock_t start, end;
+        char* algorithm_name;
+
+        switch (algorithm_choice) {
+            case 1:
+                algorithm_name = "Insertion Sort";
+                printf("Ordenando com %s...\n", algorithm_name);
+                start = clock();
+                insertion_sort(arr, size);
+                end = clock();
+                break;
+            case 2:
+                algorithm_name = "Bubble Sort";
+                printf("Ordenando com %s...\n", algorithm_name);
+                start = clock();
+                bubble_sort(arr, size);
+                end = clock();
+                break;
+            case 3:
+                algorithm_name = "Selection Sort";
+                printf("Ordenando com %s...\n", algorithm_name);
+                start = clock();
+                selection_sort(arr, size);
+                end = clock();
+                break;
+            case 4:
+                algorithm_name = "Shell Sort";
+                printf("Ordenando com %s...\n", algorithm_name);
+                start = clock();
+                shell_sort(arr, size);
+                end = clock();
+                break;
+        }
 
         double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
         printf("Ordenacao concluida em %f segundos.\n", time_taken);
