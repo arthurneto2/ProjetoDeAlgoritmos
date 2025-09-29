@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 #include "../include/file_handler.h"
 #include "../include/algorithms.h"
 #include "../include/sequence_generator.h"
@@ -9,6 +10,9 @@ int main() {
     int algorithm_choice;
     char data_type_choice;
     int data_size_choice;
+
+    const char* algorithms[] = {"insertion_sort", "bubble_sort", "selection_sort", "shell_sort"};
+    void (*sort_functions[])(int[], int) = {insertion_sort, bubble_sort, selection_sort, shell_sort};
 
     do {
         printf("\n--- Menu de Algoritmos de Ordenacao ---\n");
@@ -72,6 +76,9 @@ int main() {
                 continue;
         }
 
+        const char* algorithm_name = algorithms[algorithm_choice - 1];
+        void (*sort_function)(int[], int) = sort_functions[algorithm_choice - 1];
+
         printf("\nGerando sequencia de %d numeros...\n", size);
         int* arr = generate_sequence(size, seq_type);
         if (arr == NULL) {
@@ -80,50 +87,22 @@ int main() {
         }
 
         printf("Salvando arquivo de entrada...\n");
-        write_input_file(seq_type, size, arr);
+        write_input_file(algorithm_name, seq_type, size, arr);
 
         clock_t start, end;
-        char* algorithm_name;
-
-        switch (algorithm_choice) {
-            case 1:
-                algorithm_name = "Insertion Sort";
-                printf("Ordenando com %s...\n", algorithm_name);
-                start = clock();
-                insertion_sort(arr, size);
-                end = clock();
-                break;
-            case 2:
-                algorithm_name = "Bubble Sort";
-                printf("Ordenando com %s...\n", algorithm_name);
-                start = clock();
-                bubble_sort(arr, size);
-                end = clock();
-                break;
-            case 3:
-                algorithm_name = "Selection Sort";
-                printf("Ordenando com %s...\n", algorithm_name);
-                start = clock();
-                selection_sort(arr, size);
-                end = clock();
-                break;
-            case 4:
-                algorithm_name = "Shell Sort";
-                printf("Ordenando com %s...\n", algorithm_name);
-                start = clock();
-                shell_sort(arr, size);
-                end = clock();
-                break;
-        }
+        printf("Ordenando com %s...\n", algorithm_name);
+        start = clock();
+        sort_function(arr, size);
+        end = clock();
 
         double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
         printf("Ordenacao concluida em %f segundos.\n", time_taken);
 
         printf("Salvando arquivo de saida...\n");
-        write_output_file(seq_type, size, arr);
+        write_output_file(algorithm_name, seq_type, size, arr);
 
         printf("Salvando arquivo de tempo...\n");
-        write_time_file(seq_type, size, time_taken);
+        write_time_file(algorithm_name, seq_type, size, time_taken);
 
         free(arr);
         printf("\nOperacao concluida com sucesso!\n");

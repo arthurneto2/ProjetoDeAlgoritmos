@@ -3,32 +3,49 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Helper function to build the file path string.
-static void build_file_path(char* path_buffer, const char* base_dir, SequenceType type, int size, const char* suffix) {
+// Helper function to create the directory for a given file path
+static void create_directory_for_path(const char* path) {
+    char* path_copy = strdup(path);
+    if (path_copy == NULL) {
+        perror("strdup");
+        return;
+    }
+
+    char* last_slash = strrchr(path_copy, '/');
+    if (last_slash != NULL) {
+        *last_slash = '\0'; // Null-terminate at the last slash to get the directory path
+        
+        char command[512];
+        sprintf(command, "mkdir -p \"%s\"", path_copy);
+        system(command);
+    }
+
+    free(path_copy);
+}
+
+// Helper function to build the file path string for output, time and input files.
+static void build_output_file_path(char* path_buffer, const char* algorithm, const char* file_type, SequenceType type, int size) {
     char type_str[20];
-    char type_folder[20];
 
     switch (type) {
         case CRESCENTE:
             strcpy(type_str, "crescente");
-            strcpy(type_folder, "Crescente");
             break;
         case DECRESCENTE:
             strcpy(type_str, "decrescente");
-            strcpy(type_folder, "Decrescente");
             break;
         case RANDOM:
             strcpy(type_str, "random");
-            strcpy(type_folder, "Random");
             break;
     }
 
-    sprintf(path_buffer, "%s/%s/%s%s%d.txt", base_dir, type_folder, type_str, suffix, size);
+    sprintf(path_buffer, "resultados/%s/%s/%s/%s%d.txt", algorithm, file_type, type_str, type_str, size);
 }
 
-void write_input_file(SequenceType type, int size, int* arr) {
+void write_input_file(const char* algorithm, SequenceType type, int size, int* arr) {
     char path[256];
-    build_file_path(path, "ArquivosDeEntrada", type, size, "");
+    build_output_file_path(path, algorithm, "entrada", type, size);
+    create_directory_for_path(path);
 
     FILE* file = fopen(path, "w");
     if (file == NULL) {
@@ -44,9 +61,10 @@ void write_input_file(SequenceType type, int size, int* arr) {
     fclose(file);
 }
 
-void write_output_file(SequenceType type, int size, int* arr) {
+void write_output_file(const char* algorithm, SequenceType type, int size, int* arr) {
     char path[256];
-    build_file_path(path, "ArquivosDeSaida", type, size, "_sorted");
+    build_output_file_path(path, algorithm, "saida", type, size);
+    create_directory_for_path(path);
 
     FILE* file = fopen(path, "w");
     if (file == NULL) {
@@ -62,9 +80,10 @@ void write_output_file(SequenceType type, int size, int* arr) {
     fclose(file);
 }
 
-void write_time_file(SequenceType type, int size, double time_taken) {
+void write_time_file(const char* algorithm, SequenceType type, int size, double time_taken) {
     char path[256];
-    build_file_path(path, "ArquivosDeTempo", type, size, "_time");
+    build_output_file_path(path, algorithm, "tempo", type, size);
+    create_directory_for_path(path);
 
     FILE* file = fopen(path, "w");
     if (file == NULL) {
