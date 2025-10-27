@@ -6,13 +6,17 @@
 #include "../include/algorithms.h"
 #include "../include/sequence_generator.h"
 
+void merge_sort_wrapper(int arr[], int n) {
+    merge_sort(arr, 0, n - 1);
+}
+
 int main() {
     int algorithm_choice;
     char data_type_choice;
     int data_size_choice;
 
-    const char* algorithms[] = {"insertion_sort", "bubble_sort", "selection_sort", "shell_sort"};
-    void (*sort_functions[])(int[], int) = {insertion_sort, bubble_sort, selection_sort, shell_sort};
+    const char* algorithms[] = {"insertion_sort", "bubble_sort", "selection_sort", "shell_sort", "merge_sort"};
+    void (*sort_functions[])(int[], int) = {insertion_sort, bubble_sort, selection_sort, shell_sort, merge_sort_wrapper};
 
     do {
         printf("\n--- Menu de Algoritmos de Ordenacao ---\n");
@@ -20,6 +24,7 @@ int main() {
         printf("2. Bubble Sort\n");
         printf("3. Selection Sort\n");
         printf("4. Shell Sort\n");
+        printf("5. Merge Sort\n");
         printf("0. Sair\n");
         printf("Escolha um algoritmo: ");
         scanf("%d", &algorithm_choice);
@@ -29,7 +34,7 @@ int main() {
             return 0;
         }
 
-        if (algorithm_choice < 1 || algorithm_choice > 4) {
+        if (algorithm_choice < 1 || algorithm_choice > 5) {
             printf("Escolha invalida. Tente novamente.\n");
             continue;
         }

@@ -5,5 +5,6 @@ void insertion_sort(int arr[], int n);
 void bubble_sort(int arr[], int n);
 void selection_sort(int arr[], int n);
 void shell_sort(int arr[], int n);
+void merge_sort(int arr[], int l, int r);
 
 #endif // ALGORITHMS_H
