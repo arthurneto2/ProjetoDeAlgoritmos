@@ -2,7 +2,7 @@
 
 ## Visão Geral do Projeto
 
-Este projeto consiste na implementação e análise de quatro algoritmos de ordenação: **Bubble Sort**, **Insertion Sort**, **Selection Sort** e **Shell Sort**. O objetivo é desenvolver um programa em C que ordene diferentes conjuntos de dados (crescente, decrescente e aleatório) e meça o tempo de execução para cada cenário.
+Este projeto consiste na implementação e análise de cinco algoritmos de ordenação: **Bubble Sort**, **Insertion Sort**, **Selection Sort**, **Shell Sort** e **Merge Sort**. O objetivo é desenvolver um programa em C que ordene diferentes conjuntos de dados (crescente, decrescente e aleatório) e meça o tempo de execução para cada cenário.
 
 O projeto deve:
 

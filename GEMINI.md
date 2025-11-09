@@ -1,12 +1,18 @@
-# Projeto de Algoritmos - Insertion Sort
+# Projeto de Algoritmos - Algoritmos de Ordenação
 
 ## Visão Geral do Projeto
 
-Este projeto consiste na implementação e análise do algoritmo de ordenação **Insertion Sort**. O objetivo é desenvolver um programa em C ou C++ que ordene diferentes conjuntos de dados (crescente, decrescente e aleatório) e meça o tempo de execução para cada cenário.
+Este projeto consiste na implementação e análise de diversos algoritmos de ordenação. O objetivo é desenvolver um programa em C ou C++ que ordene diferentes conjuntos de dados (crescente, decrescente e aleatório) e meça o tempo de execução para cada cenário. Os algoritmos implementados incluem:
+
+*   **Insertion Sort**
+*   **Bubble Sort**
+*   **Merge Sort**
+*   **Selection Sort**
+*   **Shell Sort**
 
 Conforme o documento `ANÁLISE_ALGORITIMOS_DE_ORDENAÇÃO.pdf`, o projeto deve:
 
-1.  Implementar o algoritmo Insertion Sort.
+1.  Implementar os algoritmos de ordenação listados.
 2.  Gerar e ler arquivos de entrada com instâncias de diferentes tamanhos (10, 100, 1.000, 10.000, 100.000, 1.000.000) e ordens (crescente, decrescente, aleatório).
 3.  Salvar a saída ordenada em arquivos de texto.
 4.  Registrar o tempo de execução da ordenação em arquivos de tempo.
@@ -40,10 +46,10 @@ O projeto está organizado da seguinte forma:
 
 *   `app/`: Conterá o código principal da aplicação (`main`), responsável pela interação com o usuário (menu) e por orquestrar a execução do algoritmo.
 *   `bin/`: Contém o arquivo executável do projeto.
-*   `include/`: Conterá os arquivos de cabeçalho (`.h`) com as declarações das funções (ex: `insertion_sort()`, funções de manipulação de arquivos).
+*   `include/`: Conterá os arquivos de cabeçalho (`.h`) com as declarações das funções (ex: `insertion_sort()`, `bubble_sort()`, `merge_sort()`, `selection_sort()`, `shell_sort()`, funções de manipulação de arquivos).
 *   `lib/`: Armazena a biblioteca de objetos (`.a`) gerada a partir dos arquivos de objeto.
 *   `obj/`: Armazena os arquivos de objeto (`.o`) compilados a partir do código-fonte.
-*   `src/`: Conterá os arquivos de código-fonte (`.c` ou `.cpp`) com a implementação das funções declaradas nos cabeçalhos, incluindo os algoritmos de ordenação e as funções de manipulação de arquivos.
+*   `src/`: Conterá os arquivos de código-fonte (`.c` ou `.cpp`) com a implementação das funções declaradas nos cabeçalhos, incluindo todos os algoritmos de ordenação e as funções de manipulação de arquivos.
 *   `resultados/`: Contém todos os arquivos gerados pela execução dos algoritmos. Está subdividido por algoritmo e, em seguida, por tipo de arquivo:
     *   `entrada/`: Contém os arquivos `.txt` com os dados de entrada gerados para os algoritmos.
     *   `saida/`: Armazena os arquivos `.txt` com os dados ordenados.
