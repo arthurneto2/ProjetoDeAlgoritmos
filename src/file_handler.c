@@ -24,7 +24,7 @@ static void create_directory_for_path(const char* path) {
 }
 
 // Helper function to build the file path string for output, time and input files.
-static void build_output_file_path(char* path_buffer, const char* algorithm, const char* file_type, SequenceType type, int size) {
+static void build_output_file_path(char* path_buffer, const char* algorithm, const char* pivot_choice, const char* file_type, SequenceType type, int size) {
     char type_str[20];
 
     switch (type) {
@@ -39,12 +39,16 @@ static void build_output_file_path(char* path_buffer, const char* algorithm, con
             break;
     }
 
-    sprintf(path_buffer, "resultados/%s/%s/%s/%s%d.txt", algorithm, file_type, type_str, type_str, size);
+    if (pivot_choice != NULL && strlen(pivot_choice) > 0) {
+        sprintf(path_buffer, "resultados/%s/%s/%s/%s/%s%d.txt", algorithm, pivot_choice, file_type, type_str, type_str, size);
+    } else {
+        sprintf(path_buffer, "resultados/%s/%s/%s/%s%d.txt", algorithm, file_type, type_str, type_str, size);
+    }
 }
 
-void write_input_file(const char* algorithm, SequenceType type, int size, int* arr) {
+void write_input_file(const char* algorithm, const char* pivot_choice, SequenceType type, int size, int* arr) {
     char path[256];
-    build_output_file_path(path, algorithm, "entrada", type, size);
+    build_output_file_path(path, algorithm, pivot_choice, "entrada", type, size);
     create_directory_for_path(path);
 
     FILE* file = fopen(path, "w");
@@ -61,9 +65,9 @@ void write_input_file(const char* algorithm, SequenceType type, int size, int* a
     fclose(file);
 }
 
-void write_output_file(const char* algorithm, SequenceType type, int size, int* arr) {
+void write_output_file(const char* algorithm, const char* pivot_choice, SequenceType type, int size, int* arr) {
     char path[256];
-    build_output_file_path(path, algorithm, "saida", type, size);
+    build_output_file_path(path, algorithm, pivot_choice, "saida", type, size);
     create_directory_for_path(path);
 
     FILE* file = fopen(path, "w");
@@ -80,9 +84,9 @@ void write_output_file(const char* algorithm, SequenceType type, int size, int* 
     fclose(file);
 }
 
-void write_time_file(const char* algorithm, SequenceType type, int size, double time_taken) {
+void write_time_file(const char* algorithm, const char* pivot_choice, SequenceType type, int size, double time_taken) {
     char path[256];
-    build_output_file_path(path, algorithm, "tempo", type, size);
+    build_output_file_path(path, algorithm, pivot_choice, "tempo", type, size);
     create_directory_for_path(path);
 
     FILE* file = fopen(path, "w");

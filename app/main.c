@@ -14,6 +14,8 @@ int main() {
     int algorithm_choice;
     char data_type_choice;
     int data_size_choice;
+    int pivot_choice = 0;
+    const char* pivot_choice_str = NULL;
 
     const char* algorithms[] = {"insertion_sort", "bubble_sort", "selection_sort", "shell_sort", "merge_sort"};
     void (*sort_functions[])(int[], int) = {insertion_sort, bubble_sort, selection_sort, shell_sort, merge_sort_wrapper};
@@ -25,6 +27,7 @@ int main() {
         printf("3. Selection Sort\n");
         printf("4. Shell Sort\n");
         printf("5. Merge Sort\n");
+        printf("6. Quick Sort\n");
         printf("0. Sair\n");
         printf("Escolha um algoritmo: ");
         scanf("%d", &algorithm_choice);
@@ -34,9 +37,35 @@ int main() {
             return 0;
         }
 
-        if (algorithm_choice < 1 || algorithm_choice > 5) {
+        if (algorithm_choice < 1 || algorithm_choice > 6) {
             printf("Escolha invalida. Tente novamente.\n");
             continue;
+        }
+
+        if (algorithm_choice == 6) {
+            printf("\n--- Estrategia de Selecao do Pivo para Quick Sort ---\n");
+            printf("1. Primeiro Elemento\n");
+            printf("2. Elemento do Meio\n");
+            printf("3. Elemento Aleatorio\n");
+            printf("Escolha a estrategia de pivo: ");
+            scanf("%d", &pivot_choice);
+
+            switch (pivot_choice) {
+                case 1:
+                    pivot_choice_str = "primeiro_elemento";
+                    break;
+                case 2:
+                    pivot_choice_str = "elemento_meio";
+                    break;
+                case 3:
+                    pivot_choice_str = "elemento_aleatorio";
+                    break;
+                default:
+                    printf("Escolha de pivo invalida. Usando o primeiro elemento como padrao.\n");
+                    pivot_choice = 1;
+                    pivot_choice_str = "primeiro_elemento";
+                    break;
+            }
         }
 
         printf("\n--- Tipo de Entrada ---\n");
@@ -81,8 +110,12 @@ int main() {
                 continue;
         }
 
-        const char* algorithm_name = algorithms[algorithm_choice - 1];
-        void (*sort_function)(int[], int) = sort_functions[algorithm_choice - 1];
+        const char* algorithm_name;
+        if (algorithm_choice == 6) {
+            algorithm_name = "quick_sort";
+        } else {
+            algorithm_name = algorithms[algorithm_choice - 1];
+        }
 
         printf("\nGerando sequencia de %d numeros...\n", size);
         int* arr = generate_sequence(size, seq_type);
@@ -92,22 +125,27 @@ int main() {
         }
 
         printf("Salvando arquivo de entrada...\n");
-        write_input_file(algorithm_name, seq_type, size, arr);
+        write_input_file(algorithm_name, pivot_choice_str, seq_type, size, arr);
 
         clock_t start, end;
         printf("Ordenando com %s...\n", algorithm_name);
         start = clock();
-        sort_function(arr, size);
+        if (algorithm_choice == 6) {
+            quick_sort(arr, 0, size - 1, pivot_choice);
+        } else {
+            void (*sort_function)(int[], int) = sort_functions[algorithm_choice - 1];
+            sort_function(arr, size);
+        }
         end = clock();
 
         double time_taken = ((double)(end - start)) / CLOCKS_PER_SEC;
         printf("Ordenacao concluida em %f segundos.\n", time_taken);
 
         printf("Salvando arquivo de saida...\n");
-        write_output_file(algorithm_name, seq_type, size, arr);
+        write_output_file(algorithm_name, pivot_choice_str, seq_type, size, arr);
 
         printf("Salvando arquivo de tempo...\n");
-        write_time_file(algorithm_name, seq_type, size, time_taken);
+        write_time_file(algorithm_name, pivot_choice_str, seq_type, size, time_taken);
 
         free(arr);
         printf("\nOperacao concluida com sucesso!\n");

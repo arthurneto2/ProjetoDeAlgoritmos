@@ -10,8 +10,6 @@ Este projeto consiste na implementação e análise de diversos algoritmos de or
 *   **Selection Sort**
 *   **Shell Sort**
 
-Conforme o documento `ANÁLISE_ALGORITIMOS_DE_ORDENAÇÃO.pdf`, o projeto deve:
-
 1.  Implementar os algoritmos de ordenação listados.
 2.  Gerar e ler arquivos de entrada com instâncias de diferentes tamanhos (10, 100, 1.000, 10.000, 100.000, 1.000.000) e ordens (crescente, decrescente, aleatório).
 3.  Salvar a saída ordenada em arquivos de texto.
