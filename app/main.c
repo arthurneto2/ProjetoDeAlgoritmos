@@ -17,8 +17,8 @@ int main() {
     int pivot_choice = 0;
     const char* pivot_choice_str = NULL;
 
-    const char* algorithms[] = {"insertion_sort", "bubble_sort", "selection_sort", "shell_sort", "merge_sort"};
-    void (*sort_functions[])(int[], int) = {insertion_sort, bubble_sort, selection_sort, shell_sort, merge_sort_wrapper};
+    const char* algorithms[] = {"insertion_sort", "bubble_sort", "selection_sort", "shell_sort", "merge_sort", "quick_sort", "heapsort_min"};
+    void (*sort_functions[])(int[], int) = {insertion_sort, bubble_sort, selection_sort, shell_sort, merge_sort_wrapper, NULL, heapsort_min};
 
     do {
         printf("\n--- Menu de Algoritmos de Ordenacao ---\n");
@@ -28,6 +28,7 @@ int main() {
         printf("4. Shell Sort\n");
         printf("5. Merge Sort\n");
         printf("6. Quick Sort\n");
+        printf("7. Heapsort Min\n");
         printf("0. Sair\n");
         printf("Escolha um algoritmo: ");
         scanf("%d", &algorithm_choice);
@@ -37,7 +38,7 @@ int main() {
             return 0;
         }
 
-        if (algorithm_choice < 1 || algorithm_choice > 6) {
+        if (algorithm_choice < 1 || algorithm_choice > 7) {
             printf("Escolha invalida. Tente novamente.\n");
             continue;
         }
@@ -52,18 +53,18 @@ int main() {
 
             switch (pivot_choice) {
                 case 1:
-                    pivot_choice_str = "primeiro_elemento";
+                    pivot_choice_str = "pivo_primeiro";
                     break;
                 case 2:
-                    pivot_choice_str = "elemento_meio";
+                    pivot_choice_str = "pivo_meio";
                     break;
                 case 3:
-                    pivot_choice_str = "elemento_aleatorio";
+                    pivot_choice_str = "pivo_aleatorio";
                     break;
                 default:
                     printf("Escolha de pivo invalida. Usando o primeiro elemento como padrao.\n");
                     pivot_choice = 1;
-                    pivot_choice_str = "primeiro_elemento";
+                    pivot_choice_str = "pivo_primeiro";
                     break;
             }
         }
