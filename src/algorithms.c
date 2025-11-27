@@ -138,14 +138,92 @@ int partition(int arr[], int low, int high, int pivot_strategy) {
             swap(&arr[i], &arr[j]);
         }
     }
-    swap(&arr[i + 1], &arr[high]);
-    return (i + 1);
-}
-
-void quick_sort(int arr[], int low, int high, int pivot_strategy) {
-    if (low < high) {
-        int pi = partition(arr, low, high, pivot_strategy);
-        quick_sort(arr, low, pi - 1, pivot_strategy);
-        quick_sort(arr, pi + 1, high, pivot_strategy);
+        swap(&arr[i + 1], &arr[high]);
+        return (i + 1);
     }
-}
+    
+    void quick_sort(int arr[], int low, int high, int pivot_strategy) {
+        if (low < high) {
+            int pi = partition(arr, low, high, pivot_strategy);
+            quick_sort(arr, low, pi - 1, pivot_strategy);
+            quick_sort(arr, pi + 1, high, pivot_strategy);
+        }
+    }
+    
+    void minHeapify(int arr[], int n, int i) {
+        int smallest = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+    
+        if (left < n && arr[left] < arr[smallest])
+            smallest = left;
+    
+        if (right < n && arr[right] < arr[smallest])
+            smallest = right;
+    
+        if (smallest != i) {
+            swap(&arr[i], &arr[smallest]);
+            minHeapify(arr, n, smallest);
+        }
+    }
+    
+    void buildMinHeap(int arr[], int n) {
+        for (int i = n / 2 - 1; i >= 0; i--)
+            minHeapify(arr, n, i);
+    }
+    
+    void heapSort(int arr[], int n) {
+        buildMinHeap(arr, n);
+        for (int i = n - 1; i > 0; i--) {
+            swap(&arr[0], &arr[i]);
+            minHeapify(arr, i, 0);
+        }
+        // The array is now sorted in Descending order.
+        // Reverse it to get Ascending order.
+        int start = 0;
+        int end = n - 1;
+        while (start < end) {
+            swap(&arr[start], &arr[end]);
+            start++;
+            end--;
+        }
+    }
+    
+    int heapMinimum(int arr[], int n) {
+        if (n < 1) return -1; // Error
+        return arr[0];
+    }
+    
+    int heapExtractMin(int arr[], int *n) {
+        if (*n < 1) return -1; // Error
+        int min = arr[0];
+        arr[0] = arr[*n - 1];
+        (*n)--;
+        minHeapify(arr, *n, 0);
+        return min;
+    }
+    
+    void heapIncreaseKey(int arr[], int n, int i, int key) {
+        if (key < arr[i]) {
+            // Error: New key is smaller than current key
+            return;
+        }
+        arr[i] = key;
+        minHeapify(arr, n, i);
+    }
+    
+    void minHeapInsert(int arr[], int *n, int key) {
+        (*n)++;
+        int i = *n - 1;
+        arr[i] = key;
+    
+        // Swim up (Decrease Key logic)
+        while (i > 0 && arr[(i - 1) / 2] > arr[i]) {
+            swap(&arr[i], &arr[(i - 1) / 2]);
+            i = (i - 1) / 2;
+        }
+    }
+    
+    void heapsort_min(int arr[], int n) {
+        heapSort(arr, n);
+    }    
